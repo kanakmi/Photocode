@@ -1,1 +1,1 @@
-# Photocode
+# Photo code
