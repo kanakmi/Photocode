@@ -33,17 +33,9 @@ We have a dedicated Linode server for our backend. We use it for hosting our web
 
 Hedera is a decentralized public network that utiltizes the Hashgraph consensus algorithm to overcome the traditional limitations of blockchain and allow one to create next era of fast, fair, and secure applications.
 
-## 🌐 Best Domain Name from Domain.com
-
-- Any domain name with .tech, eg longitude.tech . We will choose the best domain name among all.
-
-## 🌐 Best Domain Name from GoDaddy Registry [APAC Only]
-
--
-
 ## 🤖 Symbl.ai
 
-- We are using AssemblyAI API to convert speech to text for search page. User can convert his speech to text in the IDE.
+- We are using AssemblyAI API to convert speech to text for search page. User can convert his speech to text in the IDE (for writing the code).
 
 ## 🧠 Challenges we ran into
 
@@ -58,6 +50,7 @@ Hedera is a decentralized public network that utiltizes the Hashgraph consensus 
 
 ## 📖 What we learned
 
+- Using Symbl.ai's Speech to Text service.
 - How to use Hedera for the smart contract.
 
 ## 🚀 What's next for PhotoCode
