@@ -20,7 +20,7 @@ Other features include -
 ## ⚙️ How we built it
 
 - Django: For backend
-- Treseract: For OCR
+- Tesseract: For OCR
 - Python: For backend
 - HTML and CSS: For frontend
 - Hedera: For smart contract
@@ -31,11 +31,11 @@ We have a dedicated Linode server for our backend. We use it for hosting our web
 
 ## 🔐 Best Blockchain Project Using Hedera
 
-Hedera is a decentralized public network that utiltizes the Hashgraph consensus algorithm to overcome the traditional limitations of blockchain and allow one to create next era of fast, fair, and secure applications.
+Hedera is a decentralized public network that utilizes the Hashgraph consensus algorithm to overcome the traditional limitations of blockchain and allow one to create the next era of fast, fair, and secure applications.
 
 ## 🤖 Symbl.ai
 
-- We are using AssemblyAI API to convert speech to text for search page. User can convert his speech to text in the IDE (for writing the code).
+- We are using Symbl.AI API to convert speech to text for the search pages. The user can convert his speech to text in the IDE (for writing the code).
 
 ## 🧠 Challenges we ran into
 
@@ -46,7 +46,7 @@ Hedera is a decentralized public network that utiltizes the Hashgraph consensus 
 - Completing the project within the given time frame.
 - Creating a fully functional application.
 - Creating OCR algorithm analyzes
-- Buildin an IDE.
+- Building an IDE.
 
 ## 📖 What we learned
 
