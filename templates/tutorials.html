@@ -239,6 +239,104 @@
             justify-content: center;
             padding: 10px 0;
         }
+
+        .center {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        font-family: 'Source Serif Pro', serif;
+        font-weight: bold;
+    }
+
+    .center h1 {
+        font-size: 45px;
+    }
+
+    section#subnav {
+        padding: 20px;
+        width: 100%;
+    }
+
+    #subnav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #subnav ul li {
+        list-style: none;
+        background: #96f1ff;
+        color: #111 !important;
+        padding: 8px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+
+    #subnav ul li.active {
+        background: #03a9f4;
+        color: #fff !important;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        padding: 20px;
+        grid-gap: 40px;
+        font-family: 'Source Serif Pro', serif;
+        padding-left: 120px;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+        width: 300px;
+    }
+
+    .container {
+        position: relative;
+        display: grid;
+        place-items: center;
+    }
+
+    .container img {
+        width: 80%;
+        display: block;
+        border-radius: 20px 20px 0 0;
+        padding-top: 20px;
+    }
+
+    .container:after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 20px 20px 0 0;
+        opacity: 0.7;
+    }
+
+    .details {
+        padding: 20px 10px;
+        display: grid;
+        place-items: center;
+    }
+
+    .details>h3 {
+        color: black;
+        font-weight: 600;
+        font-size: 25px;
+        margin: 10px 0 15px 0;
+    }
+
+    .details p {
+        color: #a0a0a0;
+        font-size: 10px;
+        line-height: 30px;
+        font-weight: 400;
+    }
     </style>
     <div class="sidebar">
         <div class="logo-details">
@@ -285,7 +383,147 @@
             </li>
         </ul>
     </div>
-    <h1>Blog</h1>
+
+    <section id="subnav">
+        <ul>
+            <li class="list active" data-filter="all">All</li>
+            <li class="list" data-filter="python">Python</li>
+            <li class="list" data-filter="c">C</li>
+            <li class="list" data-filter="cpp">C++</li>
+            <li class="list" data-filter="java">Java</li>
+            <li class="list" data-filter="javaScript">JavaScript</li>
+        </ul>
+    </section>
+    
+    <div class="cards">
+        <div class="card python">
+            <div class="container">
+                <img src="../media/python.png" alt="python">
+            </div>
+            <div class="details">
+                <h3>Python</h3>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=hEgO047GxaQ&list=PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3"
+                        target="blank">Telusko</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=Z1Yd7upQsXY&list=PLBZBJbE_rGRWeh5mIBhD-hhDwSEDxogDg"
+                        target="blank">CS Dojo</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU"
+                        target="blank">Corey Schafer</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=RAwntanK4wQ&list=PLwgFb6VsUj_lQTpQKDtLXKXElQychT_2j"
+                        target="blank">Harshit Vashisth</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=oVp1vrfL_w4&list=PLQVvvaa0QuDe8XSftW-RAxdo6OmaeL85M"
+                        target="blank">Sentdex</a></p>
+            </div>
+        </div>
+    
+        <div class="card c">
+            <div class="container">
+                <img src="../media/c.png" alt="c">
+            </div>
+            <div class="details">
+                <h3>c</h3>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=ZSPZob_1TOk" target="blank">Code with Harry</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="blank">FreeCodeCamp</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=Bz4MxDeEM6k" target="blank">Corey Schafer</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=wKoGImLA2KA&list=PLsyeobzWxl7oBxHp43xQTFrw9f1CDPR6C"
+                        target="blank">Telusko</a></p>
+            </div>
+        </div>
+    
+        <div class="card cpp">
+            <div class="container">
+                <img src="../media/cpp.png" alt="cpp">
+            </div>
+            <div class="details">
+                <h3>C++</h3>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=j8nAHeVKL08&list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL"
+                        target="blank">Code with Harry</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="blank">freeCodeCamp</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=ueOqcwlFfMc" target="blank">Nitrogen</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb"
+                        target="blank">The Chemo</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=e1YafrxYOWw&list=PLS1QulWo1RIYSyC6w2-rDssprPrEsgtVK"
+                        target="blank">Programming Knowledge</a></p>
+            </div>
+        </div>
+    
+        <div class="card java">
+            <div class="container">
+                <img src="../media/java.png" alt="java">
+            </div>
+            <div class="details">
+                <h3>Java</h3>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=eIrMbAQSU34" target="blank">Programming with Mosh</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=8cm1x4bC610" target="blank">Telusko</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=ntLJmHOJ0ME&list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q"
+                        target="blank">Code with Harry</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=lxja8wBwN0k&list=PLKKfKV1b9e8ps6dD3QA5KFfHdiWj9cB1s"
+                        target="blank">Apni Kaksha</a></p>
+            </div>
+        </div>
+    
+        <div class="card javaScript">
+            <div class="container">
+                <img src="../media/js.png" alt="js">
+            </div>
+            <div class="details">
+                <h3>JavaScript</h3>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="blank">Programming with Mosh</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=hKB-YGF14SY&t=10880s" target="blank">Code with Harry</a></p>
+                <p style="font-size: 20px;"><a style="text-decoration: none;"
+                        href="https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU"
+                        target="blank">Telusko</a></p>
+            </div>
+    
+        </div>
+    
+    
+        <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+                $(".list").click(function () {
+                    const value = $(this).attr("data-filter");
+                    if (value == "all") {
+                        $(".card").fadeIn(400);
+                        $("li.list.active").removeClass("active");
+                        $(this).addClass("active");
+                    }
+                    else {
+                        $("li.list.active").removeClass("active");
+                        $(this).addClass("active");
+                        $(".card")
+                            .not("." + value)
+                            .fadeOut(400);
+                        $(".card")
+                            .filter("." + value)
+                            .fadeIn(400);
+                    }
+                });
+            });
+        </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 

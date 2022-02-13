@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opportunity | PhotoCode</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Blog | PhotoCode</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-</head>
-
-<body>
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit-icons.min.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
@@ -232,89 +234,22 @@
             }
         }
 
-        section {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 0;
-        }
-
-        .heading {
-            width: 100%;
-            display: grid;
-            place-items: center;
-            font-size: 45px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .sub__heading {
-            display: grid;
-            place-items: center;
-            font-size: 25px;
-            font-weight: 500;
-        }
-
-        .cards-list {
-            z-index: 0;
-            padding-left: 80px;
-            padding-top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding-bottom: 50px;
-        }
-
-        .card {
-            margin: 30px 4px;
-            width: 300px;
-            height: 345px;
-            border-radius: 40px;
-            box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-            transition: 0.4s;
-        }
-
-        .card .card-image {
-            width: inherit;
-            height: inherit;
-            border-radius: 40px;
-            padding: 50px;
-        }
-
-        .card .card-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 40px;
-            object-fit: cover;
-        }
-
-        .card .card-title {
-            text-align: center;
-            border-radius: 0px 0px 40px 40px;
-            font-size: 30px;
-            font-family: 'Source Serif Pro', serif;
-            font-weight: 600;
-            margin-top: -50px;
-        }
-
-        .card:hover {
-            box-shadow: 5px 5px 30px 15px rgba(37, 36, 36, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
-        }
-
-        .title-black {
-            color: black;
-            font-weight: bolder;
+        .formwrap {
+            width: 60vw;
+            margin-left: 20vw;
+            margin-top: 20px;
         }
     </style>
+</head>
+
+<body>
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">Photocode</div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-code-block'></i>
                     <span class="links_name">Capture and Upload</span>
@@ -322,7 +257,7 @@
                 <span class="tooltip">Capture and Upload</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bxl-blogger'></i>
                     <span class="links_name">Blog</span>
@@ -330,7 +265,7 @@
                 <span class="tooltip">Blog</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-chalkboard'></i>
                     <span class="links_name">Tutorials</span>
@@ -338,7 +273,7 @@
                 <span class="tooltip">Tutorials</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-briefcase'></i>
                     <span class="links_name">Opportunity</span>
@@ -353,103 +288,27 @@
             </li>
         </ul>
     </div>
-    <div class="heading">Opportunity</div>
-    <div class="sub__heading">Explore various job opportunities around you</div>
 
-    <div class="cards-list">
+    <form method="POST" class="formwrap">
+        {% csrf_token %}
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">New Blog</legend>
 
-        <a href="https://careers.microsoft.com/" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Microsoft.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Microsoft</p>
-                </div>
+            <div class="uk-margin">
+                <input class="uk-input" type="text" name="title" placeholder="Title" />
             </div>
-        </a>
-
-        <a href="https://www.amazon.jobs/search-jobcategory" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Amazon.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Amazon</p>
-                </div>
+            <div class="uk-margin">
+                <input class="uk-input" type="text" name="topic" placeholder="Topic" />
             </div>
-        </a>
-
-        <a href="https://www.facebook.com/careers/locations/bangalore/?p[offices][0]=Bangalore%2C%20India&offices[0]=Bangalore%2C%20India"
-            target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Facebook.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Facebook</p>
-                </div>
+            <div class="uk-margin">
+                <textarea name="description" class="uk-textarea" rows="10" placeholder="Your Blog"></textarea>
             </div>
-        </a>
+            <button class="uk-button uk-button-default uk-button-large">
+                Post
+            </button>
+        </fieldset>
+    </form>
 
-        <a href="https://jobs.apple.com/en-in/search?location=india-INDC&page=2" target="blank"
-            style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Apple.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Amazon</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://careers.google.com/" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Google.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Google</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://careers.linkedin.com/" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Linkedin.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Linkedin</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://jobs.netflix.com/" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Netflix.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Netflix</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://careers.twitter.com/" target="blank" style="text-decoration: none;">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../media/Twitter.png" alt="">
-                </div>
-                <div class="card-title title-black">
-                    <p>Twitter</p>
-                </div>
-            </div>
-        </a>
-
-    </div>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 
@@ -483,6 +342,7 @@
 
         console.log(Cookies.get("csrftoken"));
     </script>
+
 </body>
 
 </html>

@@ -8,6 +8,12 @@
     <title>Blog | PhotoCode</title>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit-icons.min.js"></script>
 </head>
 
 <body>
@@ -246,7 +252,7 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-code-block'></i>
                     <span class="links_name">Capture and Upload</span>
@@ -254,7 +260,7 @@
                 <span class="tooltip">Capture and Upload</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bxl-blogger'></i>
                     <span class="links_name">Blog</span>
@@ -262,7 +268,7 @@
                 <span class="tooltip">Blog</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-chalkboard'></i>
                     <span class="links_name">Tutorials</span>
@@ -270,7 +276,7 @@
                 <span class="tooltip">Tutorials</span>
             </li>
 
-            <li>
+            <li style="margin-left: -30px;">
                 <a href="/">
                     <i class='bx bx-briefcase'></i>
                     <span class="links_name">Opportunity</span>
@@ -285,9 +291,98 @@
             </li>
         </ul>
     </div>
-    <h1>Blog</h1>
+    
+    <div>
+        <div
+          class="outerwrap"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            margin-bottom: 50px;
+          "
+        >
+          {% if my %}
+          <h1>My Blogs</h1>
+          {% endif %} {% if usr %}
+          <h1>Blogs of {{ usr.name }}</h1>
+          {% endif %} {% for i in datas %}
+  
+          <div
+            class="uk-card uk-card-default uk-card-large uk-card-body"
+            style="
+              width: 60vw;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              margin-top: 30px;
+              border-radius: 5px;
+              background: linear-gradient(
+                to top left,
+                rgba(116, 134, 168, 0.33),
+                rgba(87, 22, 190, 0.377)
+              );
+            "
+          >
+            <h3 class="uk-card-title">{{ i.title }}</h3>
+            <a href="/blog/{{ i.topic }}">{{ i.topic }}</a>
+            <span
+              >By-
+              <a href="/user/{{ i.name.username }}" style="margin-left: 10px"
+                >{{ i.name.first_name }}</a
+              ></span
+            >
+            <span>On- {{ i.date }}</span>
+            <hr
+              class="uk-divider-icon"
+              style="background-color: black; color: black"
+            />
+            {% autoescape on %}
+            <p>{{ i.description }}</p>
+            {% endautoescape %}
+            <button
+              class="far fa-heart"
+              id="likess{{ i.id }}"
+              onclick="like('{{ i.id }}')"
+            >
+              <span style="margin-right: 4px" id="likes{{ i.id }}"
+                >{{ i.likes }}</span
+              >
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+
+    <script type="text/javascript">
+        console.log(Cookies.get("csrftoken"));
+  
+        function like(id) {
+          var catid;
+          catid = $(this).attr("data-catid");
+          $.ajax({
+            type: "POST",
+            url: "/like",
+            headers: { "X-CSRFToken": Cookies.get("csrftoken") },
+            data: {
+              post_id: id,
+            },
+            success: function (data) {
+              var tag = "likes" + id;
+              var txt = $("#" + tag).html();
+              $("#likess" + id).removeClass("far");
+              $("#likess" + id).addClass("fas");
+              $("#likes" + id).text(eval(txt + "+1"));
+            },
+          }).done((json) => console.log(json));
+        }
+      </script>
 
     <script>
         function imgsplit() {
