@@ -1,0 +1,15 @@
+{
+  "name": "photocode",
+  "version": "1.0.0",
+  "description": "photocode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hashgraph/sdk": "^1.1.8",
+    "dotenv": "^16.0.0"
+  }
+}
