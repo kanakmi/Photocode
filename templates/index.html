@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
 </head>
 
 <body>
@@ -255,7 +255,7 @@
             border-radius: 5px;
         }
 
-        #submit_btn{
+        #submit_btn {
             padding: 5px 10px 5px 10px;
             font-size: large;
             background-color: #3c5ecf;
@@ -426,7 +426,7 @@
             </li>
 
             <li>
-                <a href="/">
+                <a href="blog">
                     <i class='bx bxl-blogger'></i>
                     <span class="links_name">Blog</span>
                 </a>
@@ -434,7 +434,7 @@
             </li>
 
             <li>
-                <a href="/">
+                <a href="tutorials">
                     <i class='bx bx-chalkboard'></i>
                     <span class="links_name">Tutorials</span>
                 </a>
@@ -442,7 +442,7 @@
             </li>
 
             <li>
-                <a href="/">
+                <a href="opportunity">
                     <i class='bx bx-briefcase'></i>
                     <span class="links_name">Opportunity</span>
                 </a>
@@ -456,10 +456,31 @@
             </li>
         </ul>
     </div>
-
-    <form action="/runcode" class="upload_section" method="post" enctype="multipart/form-data">
+    <div class="voicecommand" style="position: absolute; right: 10px; top: 10px; height: 200px; width: 200px; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+        <button id="voicebtn" onclick="voice()">Voice</button>
+        <div id="rfsh"></div>
+        <div id="livetranscript" style="height: 100px; width: 200px; background-color: white; border: 1px solid black;"></div>
+    </div>
+    <form action="" class="upload_section" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <select name="type" id="type">
+            <option value="python">
+                Python
+            </option>
+            <option value="c">
+                C
+            </option>
+            <option value="cpp">
+                C++ 
+            </option>
+            <option value="java">
+                Java
+            </option>
+            <option value="javascript">
+                Javascript
+            </option>
 
+        </select>
 
         <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
@@ -467,7 +488,7 @@
                 Image</button>
 
             <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                <input class="file-upload-input" type='file' name="myfile" onchange="readURL(this);" accept="image/*" />
                 <div class="drag-text">
                     <h3>Drag and drop a file or select add Image</h3>
                 </div>
@@ -482,27 +503,32 @@
         </div>
 
         <!-- <input type="file" name="myfile" id="myfile" style="color: white;"> -->
-        <button type="submit" class="upload_btn">Upload</button>
-    </form>
+        <!-- <button type="submit" class="upload_btn">Upload</button> -->
 
-    <form action="/runcode" method="post">
-        {% csrf_token %}
+
         <div class="form-group" style="margin-left:50px;margin-right:50px;">
             <label for="codearea">Code Area</label>
 
             <!-- Add the OCR output here -->
-            <textarea type="text" class="form-control" id="codearea" name="codearea" rows="10"
+            <textarea type="text" class="form-control" id="codearea" name="code" rows="10"
                 onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{ code }}</textarea>
 
             <!-- <img src="../media/python.png" width="35px" class="python_img"> -->
         </div>
-        
+
         <button type="submit" id="submit_btn" class="btn btn-primary">Submit</button>
 
         <div class="form-group" style="margin-left:50px;margin-right:50px;">
             <label for="output">Output</label>
             <textarea type="text" class="form-control" id="output" name="output" rows="4"
-                disabled> {{ output }} </textarea>
+                disabled>{{ result }}
+
+Exit code: {{ exit_code }}
+                {% if error %}
+
+{{ error }}
+                {% endif %}
+                </textarea>
         </div>
 
     </form>
@@ -519,25 +545,6 @@
 
     </script>
 
-    <!-- <script>hljs.highlightAll();</script>
-    <pre><code class="language-html">
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>PhotoCode</title>
-                    <link rel="stylesheet"
-                    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
-                </head>
-                <body>
-                    <script>hljs.highlightAll();</script>
-                    <p>Just Testing an HTML</p>
-                </body>
-                </html>
-    </code></pre> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 
@@ -569,7 +576,144 @@
             menuBtnChange();
         });
 
-        console.log(Cookies.get("csrftoken"));
+    </script>
+
+    <script>
+
+        let var1 = ['open parenthesis', 'close paranthesis', 'quotation', 'hash', 'less than sign', 'greater than sign', 'asterisk', 'plus', 'minus', 'multiply', 'divide', '.', '?', ',', 'space', 'open parentheses', 'close parentheses', 'new line', 'indent', 'semicolon', 'colon'];
+        let var2 = ['(', ')', '"', '#', '<', '>', '*', '+', '-', '*', '/', '', '', '', ' ', '(', ')', '\r\n', '\t', ';', ':'];
+
+
+        const accessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjU1NTQxMTYxMjczNTg5NzYiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoieGpacHBkMkVxWmdRUXpMVmlFeW5TQ1pJNXJ2emtwQktAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNjQ0NjcxMDc0LCJleHAiOjE2NDQ3NTc0NzQsImF6cCI6InhqWnBwZDJFcVpnUVF6TFZpRXluU0NaSTVydnprcEJLIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.Rv0F56NjqyKY5DbbdrTFSohoNf0-FDoOxesAtZ8jUoNE7hdsyOwi7fK3ZyzNqgHjDz2CIiq5kJOvAMGYcBJCR9mJ0iNtMPpmDyu4UjbvP8qlm9R2r6fBqixqMZpOdpW5JHiROfyZ0CphPP1ho5w7qdf0NsdmPEieJJT6lzE2Oj--AXiUqjogutIbDLIxl1rvmLDWo2mO-e0QKie94bEBy9rjguszLozsovMWdi-rwWGnoVnXyANBHBatSPM13phk_91ycegudMoBVkj8jusXTkWL2eajeWERaJy3Dr7n5VdnxdMpdWiAz6gbHJIx91Qt6CXgJFng_XTeYke32MLQpA"
+        const uniqueMeetingId = btoa("kanakmittal6@gmail.com")
+        const symblEndpoint = `wss://api.symbl.ai/v1/realtime/insights/${uniqueMeetingId}?access_token=${accessToken}`;
+        let codeouter = document.getElementById('codearea');
+        const ws = new WebSocket(symblEndpoint);
+        let code = "";
+        // Fired when a message is received from the WebSocket server
+        ws.onmessage = (event) => {
+            // You can find the conversationId in event.message.data.conversationId;
+            const data = JSON.parse(event.data);
+            if (data.type === 'message' && data.message.hasOwnProperty('data')) {
+                console.log('conversationId', data.message.data.conversationId);
+            }
+            if (data.type === 'message_response') {
+                for (let message of data.messages) {
+                    let content = message.payload.content;
+                    console.log(content);
+                    content = content.toLowerCase();
+                    if (content == 'clean canvas.') {
+                        code = '';
+                        codeouter.innerHTML = code;
+                        continue;
+                    }
+                    if (content == 'execute code.') {
+                        codeouter.style.backgroundColor = 'blue';
+                    }
+                    if (content == 'remove last word.' || 'remove the last word.') {
+                        code = code.replace(/[\W]*\S+[\W]*$/, '');
+                        codeouter.innerHTML = code;
+                        continue;
+                    }
+                    for (words in var1) {
+                        content = content.replace(var1[words], var2[var1.indexOf(var1[words])]);
+                    }
+                    console.log(code);
+                    code += content;
+                    codeouter.innerHTML = code;
+                    console.log('Transcript (more accurate): ', message.payload.content);
+                }
+            }
+            if (data.type === 'topic_response') {
+                for (let topic of data.topics) {
+                    console.log('Topic detected: ', topic.phrases)
+                }
+            }
+            if (data.type === 'insight_response') {
+                for (let insight of data.insights) {
+                    console.log('Insight detected: ', insight.payload.content);
+                }
+            }
+            if (data.type === 'message' && data.message.hasOwnProperty('punctuated')) {
+                console.log('Live transcript (less accurate): ', data.message.punctuated.transcript);
+                document.getElementById('livetranscript').innerHTML = data.message.punctuated.transcript;
+            }
+            console.log(`Response type: ${data.type}. Object: `, data);
+        };
+
+        // Fired when the WebSocket closes unexpectedly due to an error or lost connetion
+        ws.onerror = (err) => {
+            console.error(err);
+            document.getElementById('rfsh').innerHTML = 'Refresh again';
+        };
+
+        // Fired when the WebSocket connection has been closed
+        ws.onclose = (event) => {
+            console.info('Connection to websocket closed');
+            document.getElementById('rfsh').innerHTML = 'Refresh again';
+        };
+
+        // Fired when the connection succeeds.
+        ws.onopen = (event) => {
+            ws.send(JSON.stringify({
+                type: 'start_request',
+                meetingTitle: 'Websockets How-to', // Conversation name
+                insightTypes: ['question', 'action_item'], // Will enable insight generation
+                config: {
+                    confidenceThreshold: 0.5,
+                    languageCode: 'en-US',
+                    speechRecognition: {
+                        encoding: 'LINEAR16',
+                        sampleRateHertz: 44100,
+                    }
+                },
+                speaker: {
+                    userId: 'kanakmittal6@gmail.com',
+                    name: 'Kanak Mittal',
+                }
+            }));
+        };
+
+        async function f1() {
+
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+
+            /**
+             * The callback function which fires after a user gives the browser permission to use
+             * the computer's microphone. Starts a recording session which sends the audio stream to
+             * the WebSocket endpoint for processing.
+             */
+            const handleSuccess = (stream) => {
+                const AudioContext = window.AudioContext;
+                const context = new AudioContext();
+                const source = context.createMediaStreamSource(stream);
+                const processor = context.createScriptProcessor(1024, 1, 1);
+                const gainNode = context.createGain();
+                source.connect(gainNode);
+                gainNode.connect(processor);
+                processor.connect(context.destination);
+                processor.onaudioprocess = (e) => {
+                    // convert to 16-bit payload
+                    const inputData = e.inputBuffer.getChannelData(0) || new Float32Array(this.bufferSize);
+                    const targetBuffer = new Int16Array(inputData.length);
+                    for (let index = inputData.length; index > 0; index--) {
+                        targetBuffer[index] = 32767 * Math.min(1, inputData[index]);
+                    }
+                    // Send audio stream to websocket.
+                    if (ws.readyState === WebSocket.OPEN) {
+                        ws.send(targetBuffer.buffer);
+                    }
+                };
+            };
+
+
+            handleSuccess(stream);
+        }
+        const btn = document.getElementById('voicebtn');
+        async function voice() {
+            await f1();
+        }
+    </script>
     </script>
 </body>
 

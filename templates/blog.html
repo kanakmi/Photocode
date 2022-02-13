@@ -252,7 +252,7 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
-            <li style="margin-left: -30px;">
+            <li>
                 <a href="/">
                     <i class='bx bx-code-block'></i>
                     <span class="links_name">Capture and Upload</span>
@@ -260,24 +260,24 @@
                 <span class="tooltip">Capture and Upload</span>
             </li>
 
-            <li style="margin-left: -30px;">
-                <a href="/">
+            <li>
+                <a href="blog">
                     <i class='bx bxl-blogger'></i>
                     <span class="links_name">Blog</span>
                 </a>
                 <span class="tooltip">Blog</span>
             </li>
 
-            <li style="margin-left: -30px;">
-                <a href="/">
+            <li>
+                <a href="tutorials">
                     <i class='bx bx-chalkboard'></i>
                     <span class="links_name">Tutorials</span>
                 </a>
                 <span class="tooltip">Tutorials</span>
             </li>
 
-            <li style="margin-left: -30px;">
-                <a href="/">
+            <li>
+                <a href="opportunity">
                     <i class='bx bx-briefcase'></i>
                     <span class="links_name">Opportunity</span>
                 </a>
@@ -304,11 +304,8 @@
             margin-bottom: 50px;
           "
         >
-          {% if my %}
           <h1>My Blogs</h1>
-          {% endif %} {% if usr %}
-          <h1>Blogs of {{ usr.name }}</h1>
-          {% endif %} {% for i in datas %}
+          <h1>Blogs of Kanak</h1>
   
           <div
             class="uk-card uk-card-default uk-card-large uk-card-body"
@@ -327,33 +324,30 @@
               );
             "
           >
-            <h3 class="uk-card-title">{{ i.title }}</h3>
-            <a href="/blog/{{ i.topic }}">{{ i.topic }}</a>
+            <h3 class="uk-card-title">Masters in AI</h3>
+            <a href="/blog/{{ i.topic }}">AI</a>
             <span
               >By-
               <a href="/user/{{ i.name.username }}" style="margin-left: 10px"
-                >{{ i.name.first_name }}</a
+                >Kanak</a
               ></span
             >
-            <span>On- {{ i.date }}</span>
+            <span>On- 13-02-2022</span>
             <hr
               class="uk-divider-icon"
               style="background-color: black; color: black"
             />
-            {% autoescape on %}
-            <p>{{ i.description }}</p>
-            {% endautoescape %}
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos dolorum veritatis hic ullam commodi molestias, aliquid, totam tenetur accusantium expedita, sint saepe perspiciatis. Recusandae neque laboriosam ullam quisquam autem maiores.</p>
             <button
               class="far fa-heart"
               id="likess{{ i.id }}"
               onclick="like('{{ i.id }}')"
             >
               <span style="margin-right: 4px" id="likes{{ i.id }}"
-                >{{ i.likes }}</span
+                >50</span
               >
             </button>
           </div>
-          {% endfor %}
         </div>
       </div>
 
