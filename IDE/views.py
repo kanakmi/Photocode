@@ -29,7 +29,7 @@ def IDE(request):
             file = open('code.py','w')
             file.write(code)
             file.close()
-            output = subprocess.run(['python', '-c', 'code.py'],capture_output=True)
+            output = subprocess.run(['python', 'code.py'],capture_output=True)
             exit_code = output.returncode
             error = output.stderr
             result = output.stdout
