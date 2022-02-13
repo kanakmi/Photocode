@@ -11,14 +11,19 @@ dir = str(os.getcwd()).replace('\\','/')
 def IDE(request):
     if request.method == 'POST':
         type = request.POST.get('type')
-        code = request.POST.get('code')
+        try:
+            code = request.POST.get('code')
+        except:
+            pass
         file = request.POST.get('myfile')
-        if file:
+        try:
             if request.FILES['myfile']:
                 myfile = request.FILES['myfile']
                 fs = FileSystemStorage(location='media/')
                 filename = fs.save(myfile.name, myfile)
                 code = ocr_core(os.path.join(BASE_DIR, 'media/')+filename)
+        except:
+            pass
 
         if type == 'python':
             file = open('code.py','w')
