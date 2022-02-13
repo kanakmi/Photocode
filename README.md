@@ -15,7 +15,12 @@ There are multiple inspirations behind this project
 Our project aims to empower hackers around the globe to run their code on a mobile device by writing it on paper and then clicking its picture. The OCR algorithm analyzes and extracts the code from the image and pastes it into an editor where the user could make final modifications before compiling and running the code.
 
 Other features include -
-
+- Programing languages available to compile:
+    - C++
+    - C
+    - Javascript
+    - Java
+    - Python
 - Opportunity Section - Lets users explore various career opportunities they can apply to.
 - Blog Section - Lets users read blogs from various sources and share their thoughts.
 - Tutorials Section - Provides links to some useful tutorials on multiple topics users can refer to if they get stuck.
@@ -27,6 +32,7 @@ Other features include -
 - Python: For backend
 - HTML and CSS: For frontend
 - Hedera: For smart contract
+- Symbl.ai API: for speech to text
 
 ## ☁️ Use of Linode
 
@@ -34,11 +40,28 @@ We have a dedicated Linode server for our backend. We use it for hosting our web
 
 ## 🔐 Best Blockchain Project Using Hedera
 
-Hedera is a decentralized public network that utilizes the Hashgraph consensus algorithm to overcome the traditional limitations of blockchain and allow one to create the next era of fast, fair, and secure applications.
+We are using Hedera for checking the contract calls. Hedera is a decentralized public network that utilizes the Hashgraph consensus algorithm to overcome the traditional limitations of blockchain and allow one to create the next era of fast, fair, and secure applications.
 
 ## 🤖 Symbl.ai
 
-- We are using Symbl.AI API to convert speech to text for the search pages. The user can convert his speech to text in the IDE (for writing the code).
+- We are using Symbl.AI API to convert speech to text for the search pages. The user can convert his speech to text in the IDE (for writing the code).  
+Commands:  
+
+- To clear workspace 
+```
+clean canvas 
+```
+- To remove last word  
+```
+remove last word
+```
+- To execute code
+```
+Execute code  
+```
+
+## 🍻 Dream Big and Create More Cheers with AB InBev
+- We dream to make this app available to all people who have limited access and want to learn to code and make their dream come true to learn to code.
 
 ## 🧠 Challenges we ran into
 
