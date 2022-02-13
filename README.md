@@ -82,3 +82,9 @@ Execute code
 ## 🚀 What's next for PhotoCode
 
 - Adding more features to the application.
+
+## Installing and Running
+
+- [Tesseract](https://github.com/UB-Mannheim/tesseract/wiki)
+- Go to server directory and do ```npm install``` ```node index.js```
+- In the main directory do ```python manage.py runserver```
